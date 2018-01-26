@@ -1,3 +1,4 @@
+
 -l参数是用来指定程序要链接的库，-l参数紧接的就是库名。-L用来指定程序要链接库的位置，-L参数紧接的就是库名的路径。
 库名和库文件名有一定的区别：
 如：数学库的库名是m，库文件名是libm.so。显而易见，库名就是库文件名的掐头（lib）去尾（.so）。
@@ -16,3 +17,6 @@ xxxxxx-config的用法：
 
 pkg-config的用法：
 除了xxxxxx-config以外，开发包多使用pkg-config来生成链接参数，使用方法和xxxxxx-config类似，但xxxxxx-config是针对特定的开发包，而pkg-config则是针对多个开发包的链接参数的生成，用pkg-config --list-all命令可以列出所有支持的开发包，用法是pkg-config packagename --libs --cflags，packagename是包名，是上述所列出的支持的开发包的其中一个。例如xxxxxx1.5.2的包名是xxxxxx+，pkg-config xxxxxx+ --libs --cflags的作用和pkg-config --libs --cflags相同，编译执行gcc xxxxxxtest.c ~pkg-config xxxxxx+ --libs --cflags~即可。
+
+-I参数的使用：
+-I参数用来指定头文件所在文件夹，一般情况下，gcc会自动访问/usr/include文件夹下的头文件，但头文件不在上述文件夹下则需要用-I参数指定头文件的路径。如头文件放在/usr/sur/myproject/myinclude/include文件夹下，则编译命令行需添加-I/usr/sur/myproject/myinclude/include参数，否则会出现类似于“xxxxxx.h：No such file or directory”的错误。路径的指定同样可使用相对路径，如待编译的文件xxxxxx.c在上述文件夹的myproject文件夹下，头文件在include文件夹下，则编译命令为：gcc -I ./myinclude/include xxxxxxtest.c xxxxxxtest.o。
